@@ -42,12 +42,12 @@ p {
 
 .toolbar #twitter-logo {
   height: 40px;
-  margin: 0 8px;
+  margin: 10px 16px 0 0;
 }
 
 .toolbar #youtube-logo {
   height: 40px;
-  margin: 0 16px;
+  margin: 10px 16px 0 0;
 }
 
 .toolbar #twitter-logo:hover,
