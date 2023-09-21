@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Group} from '../models/group';
-import {HttpClient} from '@angular/common/http';
-import {RouterLink} from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatIconModule} from '@angular/material/icon';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Group } from '../models/group';
+import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-group-list',
@@ -20,7 +20,6 @@ export class GroupListComponent {
   groups: Group[] = [];
   displayedColumns = ['id', 'name', 'events', 'actions'];
   feedback: any = {};
-  protected readonly event = event;
 
   constructor(private http: HttpClient) {
   }
@@ -49,4 +48,6 @@ export class GroupListComponent {
       });
     }
   }
+
+  protected readonly event = event;
 }
