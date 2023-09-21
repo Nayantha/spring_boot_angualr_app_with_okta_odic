@@ -1,4 +1,7 @@
 HELP.md
+*.env
+*.okta.env
+.env
 .okta.env
 target/
 !.mvn/wrapper/maven-wrapper.jar
