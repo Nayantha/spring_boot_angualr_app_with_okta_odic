@@ -1,1 +1,48 @@
-<p>group-edit works!</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/groups">Groups</a></li>
+    <li class="breadcrumb-item active">Edit Group</li>
+  </ol>
+</nav>
+
+<h2>Group Information</h2>
+<div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<form #editForm="ngForm" (ngSubmit)="save()" *ngIf="group">
+  <mat-form-field *ngIf="group.id" class="full-width">
+    <mat-label>ID</mat-label>
+    <input [(ngModel)]="group.id" id="id" matInput name="id" placeholder="ID" readonly>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Name</mat-label>
+    <input [(ngModel)]="group.name" id="name" matInput name="name" placeholder="Name" required>
+  </mat-form-field>
+  <h3 *ngIf="group.events?.length">Events</h3>
+  <div *ngFor="let event of group.events; index as i" class="full-width">
+    <mat-form-field style="width: 35%">
+      <mat-label>Date</mat-label>
+      <input [(ngModel)]="group.events[i].date" [matDatepicker]="picker"
+             matInput name="group.events[{{i}}].date" placeholder="Date">
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field style="width: 65%">
+      <mat-label>Title</mat-label>
+      <input [(ngModel)]="group.events[i].title" matInput name="group.events[{{i}}].title" placeholder="Title">
+    </mat-form-field>
+    <button (click)="removeEvent(i)" aria-label="Remove Event" mat-icon-button
+            style="float: right; margin: -70px -5px 0 0">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <div class="button-row" role="group">
+    <button (click)="addEvent()" *ngIf="group.id" aria-label="Add Event" color="accent"
+            mat-mini-fab matTooltip="Add Event" style="float: right; margin-top: -4px"
+            type="button">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button [disabled]="!editForm.form.valid" color="primary" id="save" mat-raised-button type="submit">Save</button>
+    <button (click)="cancel()" color="accent" id="cancel" mat-button type="button">Cancel</button>
+  </div>
+</form>
