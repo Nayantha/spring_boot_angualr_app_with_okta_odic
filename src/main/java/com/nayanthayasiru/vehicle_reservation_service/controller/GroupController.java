@@ -2,6 +2,7 @@ package com.nayanthayasiru.vehicle_reservation_service.controller;
 
 import com.nayanthayasiru.vehicle_reservation_service.models.Group;
 import com.nayanthayasiru.vehicle_reservation_service.repository.GroupRepository;
+import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,11 @@ class GroupController {
 
     private final Logger log = LoggerFactory.getLogger(GroupController.class);
     private final GroupRepository groupRepository;
+    private final UserRepository userRepository;
 
-    public GroupController(GroupRepository groupRepository) {
+    public GroupController(GroupRepository groupRepository, UserRepository userRepository) {
         this.groupRepository = groupRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/groups")
