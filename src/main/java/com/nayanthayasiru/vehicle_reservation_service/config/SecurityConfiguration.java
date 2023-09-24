@@ -1,6 +1,7 @@
 package com.nayanthayasiru.vehicle_reservation_service.config;
 
 import com.nayanthayasiru.vehicle_reservation_service.web.CookieCsrfFilter;
+import com.nayanthayasiru.vehicle_reservation_service.web.SpaWebFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,7 +25,8 @@ public class SecurityConfiguration {
                 .csrf((csrf) -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()))
-                .addFilterAfter(new CookieCsrfFilter(), BasicAuthenticationFilter.class);
+                .addFilterAfter(new CookieCsrfFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new SpaWebFilter(), BasicAuthenticationFilter.class);
 
         return http.build();
     }
