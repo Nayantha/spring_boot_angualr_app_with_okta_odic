@@ -4,6 +4,7 @@ import com.nayanthayasiru.vehicle_reservation_service.models.Group;
 import com.nayanthayasiru.vehicle_reservation_service.repository.GroupRepository;
 import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -16,17 +17,13 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api")
 class GroupController {
 
     private final Logger log = LoggerFactory.getLogger(GroupController.class);
     private final GroupRepository groupRepository;
     private final UserRepository userRepository;
-
-    public GroupController(GroupRepository groupRepository, UserRepository userRepository) {
-        this.groupRepository = groupRepository;
-        this.userRepository = userRepository;
-    }
 
     @GetMapping("/groups")
     Collection<Group> groups() {
