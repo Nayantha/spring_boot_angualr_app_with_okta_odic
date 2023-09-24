@@ -1,6 +1,7 @@
 package com.nayanthayasiru.vehicle_reservation_service.controller;
 
 import com.nayanthayasiru.vehicle_reservation_service.models.Group;
+import com.nayanthayasiru.vehicle_reservation_service.models.User;
 import com.nayanthayasiru.vehicle_reservation_service.repository.GroupRepository;
 import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -9,12 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -39,10 +43,23 @@ class GroupController {
     }
 
     @PostMapping("/group")
-    ResponseEntity<Group> createGroup(@Valid @RequestBody Group group) throws URISyntaxException {
+    ResponseEntity<Group> createGroup(@Valid @RequestBody Group group, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
         log.info("Request to create group: {}", group);
+        Map<String, Object> details = principal.getAttributes();
+        String userId = details.get("sub").toString();
+
+        // check to see if user already exists
+        Optional<User> user = userRepository.findById(userId);
+        group.setUser(user.orElse(
+                new User(userId,
+                        details.get("name").toString(),
+                        details.get("email").toString(),
+                        details.get("contactNumber").toString()
+                )));
+
         Group result = groupRepository.save(group);
-        return ResponseEntity.created(new URI("/api/group/" + result.getId())).body(result);
+        return ResponseEntity.created(new URI("/api/group/" + result.getId()))
+                .body(result);
     }
 
     @PutMapping("/group/{id}")
