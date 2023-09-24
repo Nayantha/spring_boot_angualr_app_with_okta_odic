@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -26,8 +27,9 @@ class GroupController {
     private final UserRepository userRepository;
 
     @GetMapping("/groups")
-    Collection<Group> groups() {
-        return groupRepository.findAll();
+    Collection<Group> groups(Principal principal) {
+
+        return groupRepository.findAllByUserId(principal.getName());
     }
 
     @GetMapping("/group/{id}")
