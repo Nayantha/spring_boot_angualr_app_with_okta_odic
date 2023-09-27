@@ -6,7 +6,6 @@ import { GroupListComponent } from './group-list/group-list.component';
 import { GroupEditComponent } from "./group-edit/group-edit.component";
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {
     path: 'home',
     component: HomeComponent
@@ -18,7 +17,8 @@ export const routes: Routes = [
   {
     path: 'group/:id',
     component: GroupEditComponent
-  }
+  },
+  {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({
