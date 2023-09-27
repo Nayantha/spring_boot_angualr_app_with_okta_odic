@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 import { User } from '../models/user';
 import { RouterLink } from '@angular/router';
 
