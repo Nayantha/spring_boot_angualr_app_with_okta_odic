@@ -54,8 +54,22 @@ class GroupController {
                 new User(userId,
                         details.get("name").toString(),
                         details.get("email").toString(),
-                        details.get("contactNumber").toString()
+                        ""
                 )));
+//        detail = {sub="issuer|token",
+//        email_verified=true,
+//        iss=auth0 domain,
+//        given_name=, locale=en,
+//        nonce=",
+//        picture="link",
+//        sid="", aud=[""],
+//        updated_at=time,
+//        nickname="",
+//        name=",
+//        exp=time,
+//        family_name="",
+//        iat=time,
+//        email=""}
 
         Group result = groupRepository.save(group);
         return ResponseEntity.created(new URI("/api/group/" + result.getId()))
