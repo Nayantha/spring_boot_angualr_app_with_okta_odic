@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-group-edit',
@@ -28,10 +29,11 @@ export class GroupEditComponent implements OnInit {
   feedback: any = {};
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private http: HttpClient) {
+              private http: HttpClient, private auth: AuthService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.notAuthorizedRedirectToHome(this.auth, this.router);
     this.route.params.pipe(
       map(p => p['id']),
       switchMap(id => {
@@ -49,6 +51,12 @@ export class GroupEditComponent implements OnInit {
         this.feedback = {type: 'warning', message: 'Error loading'};
       }
     });
+  }
+
+  async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
+    if (!await this.auth.isAuthenticated()) {
+      await this.router.navigate(["home"])
+    }
   }
 
   save() {
