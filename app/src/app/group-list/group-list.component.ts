@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Group } from '../models/group';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-group-list',
@@ -21,16 +22,23 @@ export class GroupListComponent {
   displayedColumns = ['id', 'name', 'events', 'actions'];
   feedback: any = {};
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService, private router: Router) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.notAuthorizedRedirectToHome(this.auth, this.router)
     this.loading = true;
     this.http.get<Group[]>('api/groups').subscribe((data: Group[]) => {
       this.groups = data;
       this.loading = false;
       this.feedback = {};
     });
+  }
+
+  async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
+    if (!await this.auth.isAuthenticated()) {
+      await this.router.navigate(["home"])
+    }
   }
 
   delete(group: Group): void {
