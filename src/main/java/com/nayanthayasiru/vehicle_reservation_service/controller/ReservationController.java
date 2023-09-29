@@ -4,19 +4,22 @@ import com.nayanthayasiru.vehicle_reservation_service.models.Reservation;
 import com.nayanthayasiru.vehicle_reservation_service.models.User;
 import com.nayanthayasiru.vehicle_reservation_service.repository.ReservationRepository;
 import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -43,5 +46,24 @@ public class ReservationController {
     ResponseEntity<?> getGroup(@PathVariable Long id) {
         Optional<Reservation> reservation = reservationRepository.findById(id);
         return reservation.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/reservation")
+    ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
+        log.info("Request to create group: {}", reservation);
+        Map<String, Object> details = principal.getAttributes();
+        String userId = details.get("sub").toString();
+
+        // check to see if user already exists
+        User user = userRepository.findById(userId).orElse(new User(
+                userId,
+                details.get("name").toString(),
+                details.get("email").toString(),
+                details.get("name").toString()
+        ));
+        userRepository.save(user);
+        Reservation result = reservationRepository.save(reservation);
+        return ResponseEntity.created(new URI("/api/reservation/" + result.getId()))
+                .body(result);
     }
 }
