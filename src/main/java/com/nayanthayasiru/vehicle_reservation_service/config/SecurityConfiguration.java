@@ -20,6 +20,7 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/", "/index.html", "*.ico", "*.css", "*.js", "/api/user").permitAll()
                         .requestMatchers("/api/all_reservations").denyAll()
+                        .requestMatchers("/api/group/*", "/api/groups").denyAll()
                         .anyRequest().authenticated())
                 .oauth2Login(withDefaults())
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(withDefaults()))
