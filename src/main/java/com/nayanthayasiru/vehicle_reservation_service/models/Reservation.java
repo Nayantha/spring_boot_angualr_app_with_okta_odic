@@ -21,7 +21,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue
-    private String id;
+    private long id;
     private String name;
     private String email;
     private String contactNumber;
