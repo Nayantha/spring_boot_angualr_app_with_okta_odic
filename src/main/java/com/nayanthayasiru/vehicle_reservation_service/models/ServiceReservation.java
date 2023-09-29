@@ -8,8 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Entity
@@ -26,5 +26,5 @@ public class ServiceReservation {
     private String email;
     private String contactNumber;
     private LocalDate date;
-    private SimpleDateFormat time;
+    private LocalTime time;
 }
