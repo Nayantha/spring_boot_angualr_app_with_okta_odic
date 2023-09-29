@@ -27,7 +27,7 @@ public class ReservationController {
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
 
-    @GetMapping("/reservation")
+    @GetMapping("/all_reservations")
     Collection<Reservation> getReservationsOfAUser(Principal principal) throws Exception {
         User user = userRepository.findById(principal.getName()).orElseThrow(Exception::new);
         return reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail());
