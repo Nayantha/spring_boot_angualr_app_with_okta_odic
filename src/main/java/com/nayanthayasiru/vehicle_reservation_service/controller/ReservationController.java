@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @RestController
@@ -26,5 +27,11 @@ public class ReservationController {
     Collection<Reservation> getReservationsOfAUser(Principal principal) throws Exception {
         User user = userRepository.findById(principal.getName()).orElseThrow(Exception::new);
         return reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail());
+    }
+
+    @GetMapping("/reservation")
+    Collection<Reservation> getReservationsOfAUserFromToday(Principal principal) throws Exception {
+        User user = userRepository.findById(principal.getName()).orElseThrow(Exception::new);
+        return reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail(), LocalDate.now());
     }
 }
