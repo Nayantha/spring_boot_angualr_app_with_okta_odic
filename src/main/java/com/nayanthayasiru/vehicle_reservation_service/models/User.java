@@ -21,4 +21,11 @@ public class User {
     private String contactNumber;
     private String username;
     private String country;
+
+    public User(String id, String name, String email, String username) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+    }
 }
