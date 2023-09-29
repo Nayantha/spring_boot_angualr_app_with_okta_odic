@@ -66,4 +66,11 @@ public class ReservationController {
         return ResponseEntity.created(new URI("/api/reservation/" + result.getId()))
                 .body(result);
     }
+
+    @PutMapping("/reservation/{id}")
+    ResponseEntity<Reservation> updateGroup(@Valid @RequestBody Reservation reservation) {
+        log.info("Request to update group: {}", reservation);
+        Reservation result = reservationRepository.save(reservation);
+        return ResponseEntity.ok().body(result);
+    }
 }
