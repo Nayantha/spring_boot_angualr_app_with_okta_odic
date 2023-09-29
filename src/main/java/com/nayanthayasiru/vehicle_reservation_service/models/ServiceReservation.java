@@ -1,6 +1,7 @@
 package com.nayanthayasiru.vehicle_reservation_service.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 public class ServiceReservation {
 
     @Id
+    @GeneratedValue
     private String id;
     private String name;
     private String email;
