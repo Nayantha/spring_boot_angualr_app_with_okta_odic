@@ -14,7 +14,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
     @Query("""
             SELECT *
             FROM vehicle_reservation r
-            WHERE r.name = name and r.email = email and r.date >=: date
+            WHERE r.name =:name and r.email =:email and r.date >=:date
             """)
-    List<Reservation> findAllByNameAndEmailAfterToday(@Param("name") String name, @Param("email") String email, @Param("date") LocalDate Today);
+    List<Reservation> findAllByNameAndEmailFromToday(@Param("name") String name, @Param("email") String email, @Param("date") LocalDate Today);
 }
