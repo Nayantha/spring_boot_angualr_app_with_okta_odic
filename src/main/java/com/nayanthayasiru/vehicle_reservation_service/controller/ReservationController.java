@@ -28,15 +28,15 @@ public class ReservationController {
     private final UserRepository userRepository;
 
     @GetMapping("/all_reservations")
-    Collection<Reservation> getReservationsOfAUser(Principal principal) throws Exception {
+    ResponseEntity<Collection<Reservation>> getReservationsOfAUser(Principal principal) throws Exception {
         User user = userRepository.findById(principal.getName()).orElseThrow(Exception::new);
-        return reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail());
+        return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail()));
     }
 
     @GetMapping("/reservations")
-    Collection<Reservation> getReservationsOfAUserFromToday(Principal principal) throws Exception {
-        User user = userRepository.findById(principal.getName()).orElseThrow(Exception::new);
-        return reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail(), LocalDate.now());
+    ResponseEntity<Collection<Reservation>> getReservationsOfAUserFromToday(Principal principal) throws Exception {
+        User user = userRepository.findById(principal.getName()).orElseThrow();
+        return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail(), LocalDate.now()));
     }
 
     @GetMapping("/reservation/{id}")
