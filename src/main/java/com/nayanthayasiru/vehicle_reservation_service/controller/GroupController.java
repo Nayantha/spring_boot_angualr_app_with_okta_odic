@@ -54,7 +54,7 @@ class GroupController {
                 new User(userId,
                         details.get("name").toString(),
                         details.get("email").toString(),
-                        ""
+                        details.get("name").toString()
                 )));
 //        detail = {sub="issuer|token",
 //        email_verified=true,
