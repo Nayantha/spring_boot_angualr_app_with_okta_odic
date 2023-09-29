@@ -50,7 +50,7 @@ public class ReservationController {
 
     @PostMapping("/reservation")
     ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
-        log.info("Request to create group: {}", reservation);
+        log.info("Request to create reservation: {}", reservation);
         Map<String, Object> details = principal.getAttributes();
         String userId = details.get("sub").toString();
 
@@ -69,8 +69,15 @@ public class ReservationController {
 
     @PutMapping("/reservation/{id}")
     ResponseEntity<Reservation> updateGroup(@Valid @RequestBody Reservation reservation) {
-        log.info("Request to update group: {}", reservation);
+        log.info("Request to update reservation: {}", reservation);
         Reservation result = reservationRepository.save(reservation);
         return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping("/reservation/{id}")
+    public ResponseEntity<?> deleteGroup(@PathVariable Long id) {
+        log.info("Request to delete reservation: {}", id);
+        reservationRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
