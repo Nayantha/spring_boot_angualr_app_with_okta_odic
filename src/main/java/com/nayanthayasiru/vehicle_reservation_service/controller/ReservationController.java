@@ -33,7 +33,7 @@ public class ReservationController {
         return reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail());
     }
 
-    @GetMapping("/reservation")
+    @GetMapping("/reservations")
     Collection<Reservation> getReservationsOfAUserFromToday(Principal principal) throws Exception {
         User user = userRepository.findById(principal.getName()).orElseThrow(Exception::new);
         return reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail(), LocalDate.now());
