@@ -39,7 +39,7 @@ public class ReservationController {
     ResponseEntity<Collection<Reservation>> getReservationsOfAUserFromToday(Principal principal) {
         User user = userRepository.findById(principal.getName()).orElseThrow();
         log.info("user {}", user);
-        return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail()));
+        return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail()));
     }
 
     @GetMapping("/reservation/{id}")
