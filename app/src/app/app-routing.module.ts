@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { GroupListComponent } from './group-list/group-list.component';
 import { GroupEditComponent } from "./group-edit/group-edit.component";
+import { ReservationListComponent } from "./reservation-list/reservation-list.component";
 
 export const routes: Routes = [
   {
@@ -11,8 +11,8 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'groups',
-    component: GroupListComponent
+    path: 'reservations',
+    component: ReservationListComponent
   },
   {
     path: 'group/:id',
