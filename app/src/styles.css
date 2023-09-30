@@ -64,3 +64,15 @@ ol.breadcrumb li {
   background-color: #f8d7da;
   border-color: #f5c6cb;
 }
+
+.alert-warning {
+  color: #000000;
+  background-color: #f5f500;
+  border-color: #f5c6cb;
+}
+
+.alert-info {
+  color: #000000;
+  background-color: #006fff;
+  border-color: #f5c6cb;
+}
