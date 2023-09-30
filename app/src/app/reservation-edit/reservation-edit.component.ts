@@ -26,6 +26,7 @@ import { map, of, switchMap } from "rxjs";
 export class ReservationEditComponent implements OnInit {
   reservation!: Reservation;
   feedback: any = {};
+  currentDate = new Date(new Date().setDate(new Date().getDate() + 1))
 
   constructor(private route: ActivatedRoute, private router: Router,
               private http: HttpClient, private auth: AuthService) {
