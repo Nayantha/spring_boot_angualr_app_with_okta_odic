@@ -37,7 +37,7 @@ public class ReservationController {
     }
 
     @GetMapping("/reservations")
-    ResponseEntity<Collection<Reservation>> getReservationsOfAUserFromToday(Principal principal) throws Exception {
+    ResponseEntity<Collection<Reservation>> getReservationsOfAUserFromToday(Principal principal) {
         User user = userRepository.findById(principal.getName()).orElseThrow();
         return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail(), LocalDate.now()));
     }
