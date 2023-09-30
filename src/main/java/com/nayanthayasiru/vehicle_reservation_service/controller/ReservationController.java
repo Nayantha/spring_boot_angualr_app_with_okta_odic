@@ -38,6 +38,7 @@ public class ReservationController {
     @GetMapping("/reservations")
     ResponseEntity<Collection<Reservation>> getReservationsOfAUserFromToday(Principal principal) {
         User user = userRepository.findById(principal.getName()).orElseThrow();
+        log.info("user {}", user);
         return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail()));
     }
 
@@ -61,6 +62,9 @@ public class ReservationController {
                 details.get("name").toString()
         ));
         userRepository.save(user);
+        reservation.setName(user.getName());
+        reservation.setEmail(user.getEmail());
+        reservation.setContactNumber(user.getContactNumber());
         Reservation result = reservationRepository.save(reservation);
         return ResponseEntity.created(new URI("/api/reservation/" + result.getId()))
                 .body(result);
