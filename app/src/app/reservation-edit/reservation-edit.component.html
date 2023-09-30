@@ -18,12 +18,13 @@
   </mat-form-field>
   <mat-form-field style="width: 35%">
     <mat-label>Time</mat-label>
-    <select #selectElement [(ngModel)]="reservation.time" required>
-      <option *ngFor="let time of timeList" [value]="time">
+    <mat-select #selectElement [(ngModel)]="reservation.time" [(value)]="reservation.time" required>
+      <mat-option *ngFor="let time of timeList" value="{{time}}">
         {{time}}
-      </option>
-    </select>
+      </mat-option>
+    </mat-select>
   </mat-form-field>
+  <p>time: {{reservation.time}}</p>
 
   <div class="button-row" role="group">
     <button [disabled]="!editForm.form.valid" color="primary" id="save" mat-raised-button type="submit">Save</button>
