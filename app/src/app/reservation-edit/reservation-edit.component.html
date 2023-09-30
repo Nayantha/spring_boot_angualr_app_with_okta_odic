@@ -1,1 +1,41 @@
-<p>reservation-edit works!</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/reservations">Reservations</a></li>
+    <li class="breadcrumb-item active">Edit Reservation</li>
+  </ol>
+</nav>
+
+<h2>reservation Information</h2>
+<div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<form #editForm="ngForm" (ngSubmit)="save()" *ngIf="reservation">
+  <mat-form-field *ngIf="reservation.id" class="full-width">
+    <mat-label>ID</mat-label>
+    <input [(ngModel)]="reservation.id" id="id" matInput name="id" placeholder="ID" readonly>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Name</mat-label>
+    <input [(ngModel)]="reservation.name" id="name" matInput name="name" placeholder="Name" readonly>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Email</mat-label>
+    <input [(ngModel)]="reservation.email" id="email" matInput name="email" placeholder="email" readonly>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Contact Number</mat-label>
+    <input [(ngModel)]="reservation.contactNumber" id="contactNumber" matInput name="contactNumber"
+           placeholder="contactNumber" readonly>
+  </mat-form-field>
+  <mat-form-field style="width: 35%">
+    <mat-label>Date</mat-label>
+    <input [(ngModel)]="reservation.date" [matDatepicker]="picker"
+           matInput name="reservation.date" placeholder="Date">
+    <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="button-row" role="reservation">
+    <button [disabled]="!editForm.form.valid" color="primary" id="save" mat-raised-button type="submit">Save</button>
+    <button (click)="cancel()" color="accent" id="cancel" mat-button type="button">Cancel</button>
+  </div>
+</form>
