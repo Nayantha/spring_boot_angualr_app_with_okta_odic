@@ -11,7 +11,7 @@
 <form #editForm="ngForm" (ngSubmit)="save()" *ngIf="reservation">
   <mat-form-field style="width: 35%">
     <mat-label>Date</mat-label>
-    <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate"
+    <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate" type="date"
            id="date" matInput name="reservation.date" placeholder="Date" required>
     <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
