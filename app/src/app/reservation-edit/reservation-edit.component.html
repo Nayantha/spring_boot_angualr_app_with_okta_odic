@@ -12,7 +12,7 @@
   <mat-form-field style="width: 35%">
     <mat-label>Date</mat-label>
     <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate" type="date"
-           id="date" matInput name="reservation.date" placeholder="Date" required>
+           id="date" matInput name="date" placeholder="Date" required>
     <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
