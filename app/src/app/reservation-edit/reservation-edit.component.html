@@ -10,11 +10,11 @@
 <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
 <form #editForm="ngForm" (ngSubmit)="save()" *ngIf="reservation">
   <mat-form-field style="width: 35%">
-    <mat-label>Date</mat-label>
-    <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate" type="date"
+    <mat-label>Select Date for service</mat-label>
+    <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate"
            id="date" matInput name="date" placeholder="Date" required>
     <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
   </mat-form-field>
   <mat-form-field style="width: 35%">
     <mat-label>Time</mat-label>
