@@ -1,6 +1,6 @@
 <div *ngIf="user; else login">
   <h2>Welcome, {{ user.name }}!</h2>
-  <a color="primary" mat-button routerLink="/groups">Manage JUG Tour</a>
+  <a color="primary" mat-button routerLink="/reservations">Manage JUG Tour</a>
   <br/><br/>
   <button (click)="auth.logout()" color="primary" id="logout" mat-raised-button>Logout</button>
 </div>
