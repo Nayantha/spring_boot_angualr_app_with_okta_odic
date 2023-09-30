@@ -19,7 +19,7 @@ export class ReservationListComponent {
   title = 'Reservation List';
   loading = true;
   reservations: Reservation[] = [];
-  displayedColumns = ['id', 'name', 'email', 'contact number', 'date', 'time', 'actions'];
+  displayedColumns = ['id', 'name', 'email', 'contactNumber', 'date', 'time', 'actions'];
   feedback: any = {};
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {
@@ -33,6 +33,7 @@ export class ReservationListComponent {
       this.loading = false;
       this.feedback = {};
     });
+    console.log(this.reservations)
   }
 
   async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
