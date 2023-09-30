@@ -13,13 +13,14 @@ import { AuthService } from "../auth/auth.service";
 import { Reservation } from "../models/reservation";
 import { map, of, switchMap } from "rxjs";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
 
 @Component({
   selector: 'app-reservation-edit',
   standalone: true,
   imports: [
     CommonModule, MatInputModule, MatFormFieldModule, FormsModule, MatButtonModule, RouterLink,
-    MatDatepickerModule, MatIconModule, MatNativeDateModule, MatTooltipModule
+    MatDatepickerModule, MatIconModule, MatNativeDateModule, MatTooltipModule, MatSelectModule
   ],
   templateUrl: './reservation-edit.component.html',
   styleUrls: ['./reservation-edit.component.css']
@@ -75,7 +76,7 @@ export class ReservationEditComponent implements OnInit {
       next: () => {
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(async () => {
-          await this.router.navigate(['/reservations']);
+          // await this.router.navigate(['/reservations']);
         }, 1000);
       },
       error: () => {
