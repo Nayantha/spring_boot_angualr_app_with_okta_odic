@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "vehicle_service")
+@Table(name = "vehicle_reservation")
 public class Reservation {
 
     @Id
