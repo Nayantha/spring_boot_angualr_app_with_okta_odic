@@ -19,7 +19,7 @@ export class ReservationListComponent {
   title = 'Reservation List';
   loading = true;
   reservations: Reservation[] = [];
-  displayedColumns = ['id', 'name', 'email', 'contact number', 'date', 'time'];
+  displayedColumns = ['id', 'name', 'email', 'contact number', 'date', 'time', 'actions'];
   feedback: any = {};
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {
