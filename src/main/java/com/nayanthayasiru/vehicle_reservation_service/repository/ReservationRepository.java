@@ -3,9 +3,8 @@ package com.nayanthayasiru.vehicle_reservation_service.repository;
 import com.nayanthayasiru.vehicle_reservation_service.models.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -14,7 +13,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("""
             SELECT *
             FROM vehicle_reservation r
-            WHERE r.name =:name and r.email =:email and r.date >=:date
+            WHERE r.name = ?1 and r.email = ?2 and r.date >= ?3
             """)
-    List<Reservation> findAllByNameAndEmailFromToday(@Param("name") String name, @Param("email") String email, @Param("date") LocalDate Today);
+    List<Reservation> findAllByNameAndEmailFromToday(String name, String email, Date Today);
 }
