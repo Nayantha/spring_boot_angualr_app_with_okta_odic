@@ -33,7 +33,6 @@ export class ReservationListComponent {
       this.loading = false;
       this.feedback = {};
     });
-    console.log(this.reservations)
   }
 
   async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
