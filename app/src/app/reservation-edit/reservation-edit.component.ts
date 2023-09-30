@@ -12,12 +12,13 @@ import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
 import { Reservation } from "../models/reservation";
 import { map, of, switchMap } from "rxjs";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
   selector: 'app-reservation-edit',
   standalone: true,
   imports: [
-    CommonModule, MatInputModule, FormsModule, MatButtonModule, RouterLink,
+    CommonModule, MatInputModule, MatFormFieldModule, FormsModule, MatButtonModule, RouterLink,
     MatDatepickerModule, MatIconModule, MatNativeDateModule, MatTooltipModule
   ],
   templateUrl: './reservation-edit.component.html',
@@ -65,6 +66,7 @@ export class ReservationEditComponent implements OnInit {
   }
 
   save() {
+    console.log(this.reservation)
     const id = this.reservation.id;
     const method = id ? 'put' : 'post';
 
@@ -72,7 +74,7 @@ export class ReservationEditComponent implements OnInit {
       next: () => {
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(async () => {
-          await this.router.navigate(['/reservations']);
+          // await this.router.navigate(['/reservations']);
         }, 1000);
       },
       error: () => {
