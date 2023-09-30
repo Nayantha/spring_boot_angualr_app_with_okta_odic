@@ -18,7 +18,7 @@
   </mat-form-field>
   <mat-form-field style="width: 35%">
     <mat-label>Time</mat-label>
-    <mat-select #selectElement [(ngModel)]="reservation.time" [(value)]="reservation.time" required>
+    <mat-select [(ngModel)]="reservation.time" [(value)]="reservation.time" required>
       <mat-option *ngFor="let time of timeList" value="{{time}}">
         {{time}}
       </mat-option>
