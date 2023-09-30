@@ -28,10 +28,18 @@
   </mat-form-field>
   <mat-form-field style="width: 35%">
     <mat-label>Date</mat-label>
-    <input [(ngModel)]="reservation.date" [matDatepicker]="picker"
-           matInput name="reservation.date" placeholder="Date">
+    <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate"
+           id="date" matInput name="reservation.date" placeholder="Date" required>
     <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field style="width: 35%">
+    <mat-label>Time</mat-label>
+    <select #selectElement [(ngModel)]="reservation.time" required>
+      <option *ngFor="let time of timeList" [value]="time">
+        {{time}}
+      </option>
+    </select>
   </mat-form-field>
 
   <div class="button-row" role="reservation">
