@@ -11,7 +11,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     List<Reservation> findAllByNameAndEmail(String name, String email);
 
     @Query("""
-            SELECT *
+            SELECT r
             FROM vehicle_reservation r
             WHERE r.name = ?1 and r.email = ?2 and r.date >= ?3
             """)
