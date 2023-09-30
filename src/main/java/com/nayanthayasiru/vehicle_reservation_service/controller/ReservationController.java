@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -39,7 +41,11 @@ public class ReservationController {
     ResponseEntity<Collection<Reservation>> getReservationsOfAUserFromToday(Principal principal) {
         User user = userRepository.findById(principal.getName()).orElseThrow();
         log.info("user {}", user);
-        return ResponseEntity.ok().body(reservationRepository.findAllByNameAndEmailFromToday(user.getName(), user.getEmail()));
+        Collection<Reservation> reservations = reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail())
+                .stream()
+                .filter(reservation -> reservation.getDate().isAfter(LocalDate.now()))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(reservations);
     }
 
     @GetMapping("/reservation/{id}")
