@@ -61,11 +61,12 @@ export class ReservationEditComponent implements OnInit {
     }
   }
 
-  getSelectedDate() {
-
-  }
-
   save() {
+    let reservationDate = new Date();
+    if (reservationDate <= this.currentDate) {
+      this.feedback = {type: 'error', message: 'past dates cannot be added.'};
+      return
+    }
     console.log(this.reservation)
     const id = this.reservation.id;
     const method = id ? 'put' : 'post';
@@ -74,7 +75,7 @@ export class ReservationEditComponent implements OnInit {
       next: () => {
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(async () => {
-          // await this.router.navigate(['/reservations']);
+          await this.router.navigate(['/reservations']);
         }, 1000);
       },
       error: () => {
