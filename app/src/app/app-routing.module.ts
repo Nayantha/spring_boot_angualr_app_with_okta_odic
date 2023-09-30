@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { GroupEditComponent } from "./group-edit/group-edit.component";
 import { ReservationListComponent } from "./reservation-list/reservation-list.component";
+import { ReservationEditComponent } from "./reservation-edit/reservation-edit.component";
 
 export const routes: Routes = [
   {
@@ -15,8 +15,8 @@ export const routes: Routes = [
     component: ReservationListComponent
   },
   {
-    path: 'group/:id',
-    component: GroupEditComponent
+    path: 'reservation/:id',
+    component: ReservationEditComponent
   },
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
