@@ -60,6 +60,10 @@ export class ReservationEditComponent implements OnInit {
     }
   }
 
+  getSelectedDate() {
+
+  }
+
   save() {
     const id = this.reservation.id;
     const method = id ? 'put' : 'post';
