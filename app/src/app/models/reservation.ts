@@ -7,6 +7,7 @@ export class Reservation {
   vehicle_no: string;
   mileage: number;
   message: string;
+  location: string;
 
   constructor(reservation: Partial<Reservation> = {}) {
     this.id = reservation?.id || null;
@@ -17,5 +18,6 @@ export class Reservation {
     this.vehicle_no = reservation?.vehicle_no || "";
     this.mileage = reservation?.mileage || 0;
     this.message = reservation?.message || "";
+    this.location = reservation?.location || "";
   }
 }

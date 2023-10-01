@@ -27,4 +27,5 @@ public class Reservation {
     private String vehicle_no;
     private int mileage;
     private String message;
+    private String location;
 }
