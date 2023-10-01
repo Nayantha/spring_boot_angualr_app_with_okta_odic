@@ -1,9 +1,6 @@
 package com.nayanthayasiru.vehicle_reservation_service.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +19,12 @@ public class Reservation {
     @Id
     @GeneratedValue
     private long id;
+    @Column(name = "username")
     private String name;
     private String email;
     private LocalDate date;
     private LocalTime time;
+    private String vehicle_no;
+    private int mileage;
+    private String message;
 }
