@@ -30,6 +30,9 @@ export class ReservationEditComponent implements OnInit {
   feedback: any = {};
   currentDate = new Date(new Date().setDate(new Date().getDate() + 1))
   timeList = ["10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"]
+  locationList = ['Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
+    'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Monaragala',
+    'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya']
 
   constructor(private route: ActivatedRoute, private router: Router,
               private http: HttpClient, private auth: AuthService) {
