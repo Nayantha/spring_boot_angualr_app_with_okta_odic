@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "users")
+@Table(name = "customer")
 public class User {
 
     @Id
