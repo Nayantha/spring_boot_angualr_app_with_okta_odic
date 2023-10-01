@@ -24,7 +24,7 @@ public class Reservation {
     private long id;
     private String name;
     private String email;
-    private String contactNumber;
+    private String contact_number;
     private LocalDate date;
     private LocalTime time;
 }
