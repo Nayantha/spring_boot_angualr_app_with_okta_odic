@@ -28,10 +28,6 @@
       <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
       <mat-cell *matCellDef="let item"> {{ item.email }} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="contactNumber">
-      <mat-header-cell *matHeaderCellDef> contact number</mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{ item.contactNumber }} </mat-cell>
-    </ng-container>
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
       <mat-cell *matCellDef="let item"> {{ item.date | date}} </mat-cell>
