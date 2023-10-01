@@ -9,20 +9,33 @@
 <h2>reservation Information</h2>
 <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
 <form #editForm="ngForm" (ngSubmit)="save()" *ngIf="reservation">
-  <mat-form-field style="width: 35%">
+  <mat-form-field class="full-width">
     <mat-label>Select Date for service</mat-label>
     <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate"
            id="date" matInput name="date" placeholder="Date" required>
     <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #picker disabled="false"></mat-datepicker>
   </mat-form-field>
-  <mat-form-field style="width: 35%">
+  <mat-form-field class="full-width">
     <mat-label>Time</mat-label>
     <mat-select [(ngModel)]="reservation.time" [(value)]="reservation.time" required>
       <mat-option *ngFor="let time of timeList" value="{{time}}">
         {{time}}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Vehicle Number</mat-label>
+    <input [(ngModel)]="reservation.vehicle_no" id="vehicle_no" matInput name="vehicle_no" placeholder="vehicle_no"
+           required>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Mileage</mat-label>
+    <input [(ngModel)]="reservation.mileage" id="mileage" matInput name="mileage" placeholder="mileage" required>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Message</mat-label>
+    <input [(ngModel)]="reservation.message" id="message" matInput name="message" placeholder="message" required>
   </mat-form-field>
 
   <div class="button-row" role="group">
