@@ -18,7 +18,7 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String contactNumber;
+    private String contact_number;
     private String username;
     private String country;
 

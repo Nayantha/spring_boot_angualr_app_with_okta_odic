@@ -1,6 +1,6 @@
 export class User {
   email!: number;
   name!: string;
-  contactNumber!: string;
+  contact_number!: string;
   country!: string;
 }
