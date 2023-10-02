@@ -24,8 +24,7 @@ public class Reservation {
     private String email;
     private LocalDate date;
     private LocalTime time;
-    @Column(name = "vehicle_no")
-    private String vehicleNo;
+    private String vehicle_no;
     private int mileage;
     private String message;
     private String location;
