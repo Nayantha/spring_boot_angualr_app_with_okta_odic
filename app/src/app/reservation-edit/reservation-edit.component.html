@@ -6,7 +6,7 @@
   </ol>
 </nav>
 
-<h2>reservation Information</h2>
+<h2>Reservation Information</h2>
 <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
 <form #editForm="ngForm" (ngSubmit)="save()" *ngIf="reservation">
   <mat-form-field class="full-width">
