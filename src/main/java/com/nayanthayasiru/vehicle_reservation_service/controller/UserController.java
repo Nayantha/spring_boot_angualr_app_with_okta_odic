@@ -1,6 +1,9 @@
 package com.nayanthayasiru.vehicle_reservation_service.controller;
 
+import com.nayanthayasiru.vehicle_reservation_service.models.User;
+import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +20,14 @@ import java.text.MessageFormat;
 import static java.util.Map.of;
 
 @RestController
+@AllArgsConstructor
 public class UserController {
     private final ClientRegistration registration;
+    private final UserRepository userRepository;
 
-    public UserController(ClientRegistrationRepository registrations) {
+    public UserController(ClientRegistrationRepository registrations, UserRepository userRepository) {
         this.registration = registrations.findByRegistrationId("okta");
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/api/user")
@@ -30,6 +36,16 @@ public class UserController {
             return new ResponseEntity<>("", HttpStatus.OK);
         } else {
             return ResponseEntity.ok().body(user.getAttributes());
+        }
+    }
+
+    @GetMapping("/api/get_saved_user")
+    public ResponseEntity<?> getSavedUser(@AuthenticationPrincipal OAuth2User user) {
+        User result = userRepository.findById(user.getAttributes().get("sub").toString()).orElse(null);
+        if (user == null || result == null) {
+            return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+        } else {
+            return ResponseEntity.ok().body(result);
         }
     }
 
