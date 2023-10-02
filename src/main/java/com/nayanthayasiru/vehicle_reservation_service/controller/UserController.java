@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.text.MessageFormat;
 
 import static java.util.Map.of;
@@ -40,12 +41,12 @@ public class UserController {
     }
 
     @GetMapping("/get_saved_user")
-    public ResponseEntity<?> getSavedUser(@AuthenticationPrincipal OAuth2User user) {
-        User result = userRepository.findById(user.getAttributes().get("sub").toString()).orElse(null);
-        if (user == null || result == null) {
+    public ResponseEntity<?> getSavedUser(Principal principal) {
+        User user = userRepository.findById(principal.getName()).orElse(null);
+        if (user == null) {
             return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
         } else {
-            return ResponseEntity.ok().body(result);
+            return ResponseEntity.ok().body(user);
         }
     }
 
