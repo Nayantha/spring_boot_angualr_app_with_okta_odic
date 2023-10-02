@@ -68,7 +68,7 @@ export class ReservationEditComponent implements OnInit {
   }
 
   async notAuthorizedRedirectToHome() {
-    if (!this.auth.isAuthenticated()) {
+    if (!await this.auth.isAuthenticated()) {
       await this.router.navigate(["home"])
     }
   }
