@@ -11,6 +11,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
 import { Reservation } from "../models/reservation";
+import { User } from "../models/user";
 import { map, of, switchMap } from "rxjs";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
@@ -27,6 +28,7 @@ import { MatSelectModule } from "@angular/material/select";
 })
 export class ReservationEditComponent implements OnInit {
   reservation!: Reservation;
+  user!: User;
   feedback: any = {};
   currentDate = new Date(new Date().setDate(new Date().getDate() + 1))
   timeList = ["10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"]
@@ -39,7 +41,8 @@ export class ReservationEditComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.notAuthorizedRedirectToHome(this.auth, this.router);
+    
+    await this.notAuthorizedRedirectToHome();
     this.route.params.pipe(
       map(p => p['id']),
       switchMap(id => {
@@ -59,8 +62,8 @@ export class ReservationEditComponent implements OnInit {
     });
   }
 
-  async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
-    if (!await this.auth.isAuthenticated()) {
+  async notAuthorizedRedirectToHome() {
+    if (!this.auth.isAuthenticated()) {
       await this.router.navigate(["home"])
     }
   }
