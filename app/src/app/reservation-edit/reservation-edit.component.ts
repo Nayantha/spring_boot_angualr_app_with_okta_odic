@@ -44,7 +44,7 @@ export class ReservationEditComponent implements OnInit {
     this.http.get<User>('/api/get_saved_user', {headers},)
       .pipe(map((response: User) => {
           this.user = response;
-          console.log(user, response)
+        console.log(this.user, response)
         })
       );
     await this.notAuthorizedRedirectToHome();
