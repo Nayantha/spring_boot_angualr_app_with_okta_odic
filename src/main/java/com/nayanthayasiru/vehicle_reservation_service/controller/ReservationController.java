@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @RequestMapping("/api")
 public class ReservationController {
-    private final Logger log = LoggerFactory.getLogger(GroupController.class);
+    private final Logger log = LoggerFactory.getLogger(ReservationController.class);
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
 
