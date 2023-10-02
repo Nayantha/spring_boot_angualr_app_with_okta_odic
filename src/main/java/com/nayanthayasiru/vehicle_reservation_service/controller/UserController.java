@@ -1,5 +1,6 @@
 package com.nayanthayasiru.vehicle_reservation_service.controller;
 
+import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,11 @@ import static java.util.Map.of;
 @RequestMapping("/api")
 public class UserController {
     private final ClientRegistration registration;
+    private final UserRepository userRepository;
 
-    public UserController(ClientRegistrationRepository registrations) {
+    public UserController(ClientRegistrationRepository registrations, UserRepository userRepository) {
         this.registration = registrations.findByRegistrationId("okta");
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/user")
