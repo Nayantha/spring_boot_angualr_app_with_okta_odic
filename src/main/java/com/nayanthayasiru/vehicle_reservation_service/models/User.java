@@ -1,5 +1,6 @@
 package com.nayanthayasiru.vehicle_reservation_service.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,7 +19,8 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String contact_number;
+    @Column(name = "contact_number")
+    private String contactNumber;
     private String username;
     private String country;
 
