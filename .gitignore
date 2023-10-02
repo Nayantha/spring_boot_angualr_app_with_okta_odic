@@ -39,3 +39,9 @@ build/
 .vscode/
 
 /app/.config/
+
+### Custon JAVA file ###
+./src/main/java/com/nayanthayasiru/vehicle_reservation_service/repository/GroupRepository.java
+./src/main/java/com/nayanthayasiru/vehicle_reservation_service/models/Group.java
+./src/main/java/com/nayanthayasiru/vehicle_reservation_service/controller/GroupController.java
+./src/main/java/com/nayanthayasiru/vehicle_reservation_service/models/Event.java
