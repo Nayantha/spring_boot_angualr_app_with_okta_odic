@@ -45,7 +45,6 @@
     <mat-label>Message</mat-label>
     <input [(ngModel)]="reservation.message" id="message" matInput name="message" placeholder="message" required>
   </mat-form-field>
-
   <div class="button-row" role="group">
     <button [disabled]="!editForm.form.valid" color="primary" id="save" mat-raised-button type="submit">Save</button>
     <button (click)="cancel()" color="accent" id="cancel" mat-button type="button">Cancel</button>
