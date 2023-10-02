@@ -41,7 +41,7 @@ export class ReservationEditComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.http.get<User>('/api/get_saved_user', {headers},)
+    this.http.get<User>('/api/get_saved_user')
       .pipe(map((response: User) => {
           this.user = response;
         console.log(this.user, response)
