@@ -24,6 +24,7 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
+public
 class GroupController {
 
     private final Logger log = LoggerFactory.getLogger(GroupController.class);
