@@ -17,15 +17,17 @@ import java.time.LocalTime;
 public class Reservation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
     private long id;
     @Column(name = "username")
     private String name;
+    private String email;
+    private String phone;
     private LocalDate date;
     private LocalTime time;
+    private String location;
     private String vehicle_no;
     private int mileage;
     private String message;
-    private String location;
 }
