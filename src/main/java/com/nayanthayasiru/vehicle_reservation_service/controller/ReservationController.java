@@ -75,6 +75,7 @@ public class ReservationController {
         savedUser.setCountry(user.getCountry());
         userRepository.save(savedUser);
         reservation.setName(savedUser.getName());
+        reservation.setEmail(savedUser.getEmail());
         log.info("reservation {}", reservation);
         Reservation result = reservationRepository.save(reservation);
         return ResponseEntity.created(new URI("/api/reservation/" + result.getId()))
