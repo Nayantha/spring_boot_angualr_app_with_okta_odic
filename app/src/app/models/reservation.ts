@@ -20,6 +20,6 @@ export class Reservation {
     this.mileage = reservation?.mileage || 0;
     this.message = reservation?.message || "";
     this.location = reservation?.location || "";
-    this.phone = reservation?.phone || "000 0000 000";
+    this.phone = reservation?.phone || "";
   }
 }
