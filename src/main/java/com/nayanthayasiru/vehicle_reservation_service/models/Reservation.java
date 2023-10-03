@@ -21,7 +21,6 @@ public class Reservation {
     private long id;
     @Column(name = "username")
     private String name;
-    private String email;
     private LocalDate date;
     private LocalTime time;
     private String vehicle_no;
