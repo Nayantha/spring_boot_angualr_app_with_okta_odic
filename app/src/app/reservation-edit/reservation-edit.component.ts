@@ -14,6 +14,7 @@ import { Reservation } from "../models/reservation";
 import { map, of, switchMap } from "rxjs";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
+import { User } from "../models/user";
 
 @Component({
   selector: 'app-reservation-edit',
@@ -27,6 +28,7 @@ import { MatSelectModule } from "@angular/material/select";
 })
 export class ReservationEditComponent implements OnInit {
   reservation!: Reservation;
+  user!: User;
   feedback: any = {};
   currentDate = new Date(new Date().setDate(new Date().getDate() + 1))
   timeList = ["10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"]
@@ -40,6 +42,9 @@ export class ReservationEditComponent implements OnInit {
 
   async ngOnInit() {
     await this.notAuthorizedRedirectToHome();
+    this.http.get<User>('api/get_saved_user').subscribe((data: User) => {
+      this.user = data;
+    });
     this.route.params.pipe(
       map(p => p['id']),
       switchMap(id => {
