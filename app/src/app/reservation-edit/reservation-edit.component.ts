@@ -71,22 +71,20 @@ export class ReservationEditComponent implements OnInit {
   }
 
   save() {
-    if (this.reservation.date !== null && this.reservation.time !== null) {
-      const id = this.reservation.id;
-      const method = id ? 'put' : 'post';
+    const id = this.reservation.id;
+    const method = id ? 'put' : 'post';
 
-      this.http[method]<Reservation>(`/api/reservation${id ? '/' + id : ''}`, this.reservation).subscribe({
-        next: () => {
-          this.feedback = {type: 'success', message: 'Save was successful!'};
-          setTimeout(async () => {
-            await this.router.navigate(['/reservations']);
-          }, 1000);
-        },
-        error: () => {
-          this.feedback = {type: 'error', message: 'Error saving'};
-        }
-      });
-    }
+    this.http[method]<Reservation>(`/api/reservation${id ? '/' + id : ''}`, this.reservation).subscribe({
+      next: () => {
+        this.feedback = {type: 'success', message: 'Save was successful!'};
+        setTimeout(async () => {
+          await this.router.navigate(['/reservations']);
+        }, 1000);
+      },
+      error: () => {
+        this.feedback = {type: 'error', message: 'Error saving'};
+      }
+    });
   }
 
   async cancel() {
