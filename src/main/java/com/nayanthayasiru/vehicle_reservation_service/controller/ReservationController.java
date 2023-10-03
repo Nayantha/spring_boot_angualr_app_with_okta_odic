@@ -55,20 +55,23 @@ public class ReservationController {
     }
 
     @PostMapping("/reservation")
-    ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
+    ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation, @Valid @RequestBody User user, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
         log.info("Request to create reservation: {}", reservation);
+        log.info("Request to create reservation by user: {}", user);
         Map<String, Object> details = principal.getAttributes();
         String userId = details.get("sub").toString();
 
         // check to see if user already exists
-        User user = userRepository.findById(userId).orElse(new User(
+        User savedUser = userRepository.findById(userId).orElse(new User(
                 userId,
                 details.get("name").toString(),
                 details.get("email").toString(),
                 details.get("name").toString()
         ));
-        userRepository.save(user);
-        reservation.setName(user.getName());
+        savedUser.setContactNumber(user.getContactNumber());
+        savedUser.setCountry(user.getCountry());
+        userRepository.save(savedUser);
+        reservation.setName(savedUser.getName());
         log.info("reservation {}", reservation);
         Reservation result = reservationRepository.save(reservation);
         return ResponseEntity.created(new URI("/api/reservation/" + result.getId()))
