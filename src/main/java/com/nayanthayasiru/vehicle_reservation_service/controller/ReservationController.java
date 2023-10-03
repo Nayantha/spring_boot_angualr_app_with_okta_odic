@@ -1,5 +1,6 @@
 package com.nayanthayasiru.vehicle_reservation_service.controller;
 
+import com.nayanthayasiru.vehicle_reservation_service.DTO.UserReservationDTO;
 import com.nayanthayasiru.vehicle_reservation_service.models.Reservation;
 import com.nayanthayasiru.vehicle_reservation_service.models.User;
 import com.nayanthayasiru.vehicle_reservation_service.repository.ReservationRepository;
@@ -55,7 +56,9 @@ public class ReservationController {
     }
 
     @PostMapping("/reservation")
-    ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation, @Valid @RequestBody User user, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
+    ResponseEntity<Reservation> createReservation(@Valid @RequestBody UserReservationDTO userReservationDTO, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
+        Reservation reservation = userReservationDTO.reservation;
+        User user = userReservationDTO.user;
         log.info("Request to create reservation: {}", reservation);
         log.info("Request to create reservation by user: {}", user);
         Map<String, Object> details = principal.getAttributes();
