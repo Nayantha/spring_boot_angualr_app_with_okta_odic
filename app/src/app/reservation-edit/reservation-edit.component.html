@@ -9,6 +9,20 @@
 <h2>Reservation Information</h2>
 <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
 <form #editForm="ngForm" (ngSubmit)="save()" *ngIf="reservation">
+  <mat-form-field *ngIf="!user.country" class="full-width">
+    <mat-label>Select Your Country</mat-label>
+    <mat-select [(ngModel)]="userCountry" [(value)]="userCountry" required>
+      <mat-option *ngFor="let country of countryList" value="{{country}}">
+        {{country}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="!user.contactNumber" class="full-width">
+    <mat-label>Contact Number</mat-label>
+    <input [(ngModel)]="userPhone" [readonly]="user.contactNumber !== null" id="userPhone" matInput name="userPhone"
+           placeholder="userPhone"
+           required value="{{userPhone}}">
+  </mat-form-field>
   <mat-form-field class="full-width">
     <mat-label>Select Date for service</mat-label>
     <input [(ngModel)]="reservation.date" [matDatepicker]="picker" [min]="currentDate"
