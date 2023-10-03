@@ -335,10 +335,12 @@ export class ReservationEditComponent implements OnInit {
     const id = this.reservation.id;
     const method = id ? 'put' : 'post';
 
-    this.http[method]<Reservation>(`/api/reservation${id ? '/' + id : ''}`, {
-      "reservation": this.reservation,
-      "user": this.user
-    }).subscribe({
+    this.http[method]<Reservation>(`/api/reservation${id ? '/' + id : ''}`,
+      method === "post" ? {
+        "reservation": this.reservation,
+        "user": this.user
+      } : this.reservation
+    ).subscribe({
       next: () => {
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(async () => {
