@@ -31,7 +31,7 @@
     <mat-datepicker #picker disabled="false"></mat-datepicker>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <mat-label>Time</mat-label>
+    <mat-label>Time <span *ngIf="reservation.time"> | {{reservation.time}}</span></mat-label>
     <mat-select [(ngModel)]="reservation.time" [(value)]="reservation.time" required>
       <mat-option *ngFor="let time of timeList" value="{{time}}">
         {{time}}
@@ -39,7 +39,7 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <mat-label>Location</mat-label>
+    <mat-label>Location <span *ngIf="reservation.location"> | {{reservation.location}}</span></mat-label>
     <mat-select [(ngModel)]="reservation.location" [(value)]="reservation.location" required>
       <mat-option *ngFor="let location of locationList" value="{{location}}">
         {{location}}
