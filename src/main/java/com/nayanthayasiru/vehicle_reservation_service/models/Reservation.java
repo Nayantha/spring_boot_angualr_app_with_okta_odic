@@ -18,6 +18,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue
+    @Column(name = "booking_id")
     private long id;
     @Column(name = "username")
     private String name;
