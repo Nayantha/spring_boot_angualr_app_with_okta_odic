@@ -326,10 +326,19 @@ export class ReservationEditComponent implements OnInit {
   }
 
   save() {
+    if (this.userPhone === null || this.userCountry === null) {
+      this.feedback = {type: 'error', message: 'Some Required Fields are empty.'};
+    }
+    this.user.country = this.userCountry;
+    this.user.contactNumber = this.userPhone;
+    this.reservation.phone = this.userPhone;
     const id = this.reservation.id;
     const method = id ? 'put' : 'post';
 
-    this.http[method]<Reservation>(`/api/reservation${id ? '/' + id : ''}`, this.reservation).subscribe({
+    this.http[method]<Reservation>(`/api/reservation${id ? '/' + id : ''}`, {
+      "reservation": this.reservation,
+      "user": this.user
+    }).subscribe({
       next: () => {
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(async () => {
