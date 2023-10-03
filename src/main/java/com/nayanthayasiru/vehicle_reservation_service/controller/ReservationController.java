@@ -19,6 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class ReservationController {
         log.info("user {}", user);
         Collection<Reservation> reservations = reservationRepository.findAllByNameAndEmail(user.getName(), user.getEmail())
                 .stream()
-                .filter(reservation -> reservation.getDate().isAfter(LocalDate.now()))
+                .filter(reservation -> reservation.getDate().isAfter(LocalDate.now()) || reservation.getDate().isEqual(LocalDate.now()) && reservation.getTime().isAfter(LocalTime.now()))
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(reservations);
     }
