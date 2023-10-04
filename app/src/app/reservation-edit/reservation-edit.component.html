@@ -20,7 +20,7 @@
   <mat-form-field *ngIf="!user.contactNumber" class="full-width">
     <mat-label>Contact Number</mat-label>
     <input [(ngModel)]="userPhone" [readonly]="user.contactNumber !== null" id="userPhone" matInput name="userPhone"
-           placeholder="userPhone"
+           [pattern]="phoneNumberPattern" placeholder="userPhone"
            required value="{{userPhone}}">
   </mat-form-field>
   <mat-form-field class="full-width">
