@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatInputModule } from "@angular/material/input";
-import { FormsModule } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatIconModule } from "@angular/material/icon";
-import { MatNativeDateModule } from "@angular/material/core";
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { HttpClient } from "@angular/common/http";
-import { AuthService } from "../auth/auth.service";
-import { Reservation } from "../models/reservation";
-import { map, of, switchMap } from "rxjs";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatSelectModule } from "@angular/material/select";
-import { User } from "../models/user";
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../auth/auth.service";
+import {Reservation} from "../models/reservation";
+import {map, of, switchMap} from "rxjs";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {User} from "../models/user";
 
 @Component({
   selector: 'app-reservation-edit',
@@ -27,6 +27,7 @@ import { User } from "../models/user";
   styleUrls: ['./reservation-edit.component.css']
 })
 export class ReservationEditComponent implements OnInit {
+  phoneNumberPattern = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$"
   reservation!: Reservation;
   user!: User;
   feedback: any = {};
