@@ -29,6 +29,8 @@ import {DomSanitizer} from "@angular/platform-browser"
 })
 export class ReservationEditComponent implements OnInit {
   phoneNumberPattern = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$"
+  vehicleNumberPattern = "^([a-zA-Z]{1,3}|((?!0*-)[0-9]{1,3}))-[0-9]{4}(?<!0{4})"
+  messageTextPattern = "^[a-zA-z0-9.,+%_\\-]{10,100}$";
   reservation!: Reservation;
   user!: User;
   feedback: any = {};
@@ -376,4 +378,6 @@ export class ReservationEditComponent implements OnInit {
   async cancel() {
     await this.router.navigate(['/reservations']);
   }
+
+  protected readonly parent = parent;
 }

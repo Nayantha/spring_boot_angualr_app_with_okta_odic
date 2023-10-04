@@ -49,7 +49,7 @@
   <mat-form-field class="full-width">
     <mat-label>Vehicle Number</mat-label>
     <input [(ngModel)]="reservation.vehicle_no" id="vehicle_no" matInput name="vehicle_no" placeholder="vehicle_no"
-           required>
+           [pattern]="vehicleNumberPattern" required>
   </mat-form-field>
   <mat-form-field class="full-width">
     <mat-label>Mileage</mat-label>
@@ -58,7 +58,8 @@
   </mat-form-field>
   <mat-form-field class="full-width">
     <mat-label>Message</mat-label>
-    <input [(ngModel)]="reservation.message" id="message" matInput name="message" placeholder="message" required>
+    <input [(ngModel)]="reservation.message" [pattern]="messageTextPattern" id="message" matInput name="message" placeholder="message"
+           required>
   </mat-form-field>
   <div class="button-row" role="group">
     <button [disabled]="!editForm.form.valid || formSubmitted" color="primary" id="save" mat-raised-button
