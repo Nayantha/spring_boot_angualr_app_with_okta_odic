@@ -83,12 +83,12 @@ public class ReservationController {
                 .body(result);
     }
 
-    @PutMapping("/reservation/{id}")
-    ResponseEntity<Reservation> updateGroup(@Valid @RequestBody Reservation reservation) {
-        log.info("Request to update reservation: {}", reservation);
-        Reservation result = reservationRepository.save(reservation);
-        return ResponseEntity.ok().body(result);
-    }
+//    @PutMapping("/reservation/{id}")
+//    ResponseEntity<Reservation> updateGroup(@Valid @RequestBody Reservation reservation) {
+//        log.info("Request to update reservation: {}", reservation);
+//        Reservation result = reservationRepository.save(reservation);
+//        return ResponseEntity.ok().body(result);
+//    }
 
     @DeleteMapping("/reservation/{id}")
     public ResponseEntity<?> deleteGroup(@PathVariable Long id) {
