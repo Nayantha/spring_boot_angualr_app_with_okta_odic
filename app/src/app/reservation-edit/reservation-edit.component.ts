@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, SecurityContext} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
@@ -15,6 +15,7 @@ import {map, of, switchMap} from "rxjs";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {User} from "../models/user";
+import {DomSanitizer} from "@angular/platform-browser"
 
 @Component({
   selector: 'app-reservation-edit',
@@ -291,7 +292,7 @@ export class ReservationEditComponent implements OnInit {
   userPhone!: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private http: HttpClient, private auth: AuthService) {
+              private http: HttpClient, private auth: AuthService, private sanitizer: DomSanitizer) {
   }
 
   async ngOnInit() {
@@ -327,6 +328,19 @@ export class ReservationEditComponent implements OnInit {
   }
 
   save() {
+    if (
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.userPhone) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.userCountry) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.date) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.time) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.location) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.vehicle_no) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.mileage) ||
+      !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.message)
+    ) {
+      this.feedback = {type: 'error', message: 'Some Fields entered contain bad values.'};
+      return;
+    }
     if (this.userPhone === null || this.userCountry === null) {
       this.feedback = {type: 'error', message: 'Some Required Fields are empty.'};
     }
