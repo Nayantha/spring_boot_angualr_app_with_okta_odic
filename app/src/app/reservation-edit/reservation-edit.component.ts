@@ -290,6 +290,7 @@ export class ReservationEditComponent implements OnInit {
   ]
   userCountry!: string;
   userPhone!: string;
+  formSubmitted: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private http: HttpClient, private auth: AuthService, private sanitizer: DomSanitizer) {
@@ -328,6 +329,7 @@ export class ReservationEditComponent implements OnInit {
   }
 
   save() {
+    this.formSubmitted = true;
     if (
       !this.sanitizer.sanitize(SecurityContext.HTML, this.userPhone) ||
       !this.sanitizer.sanitize(SecurityContext.HTML, this.userCountry) ||
@@ -338,10 +340,12 @@ export class ReservationEditComponent implements OnInit {
       !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.mileage) ||
       !this.sanitizer.sanitize(SecurityContext.HTML, this.reservation.message)
     ) {
+      this.formSubmitted = false;
       this.feedback = {type: 'error', message: 'Some Fields entered contain bad values.'};
       return;
     }
     if (this.userPhone === null || this.userCountry === null) {
+      this.formSubmitted = false
       this.feedback = {type: 'error', message: 'Some Required Fields are empty.'};
     }
     this.user.country = this.userCountry;
@@ -363,6 +367,7 @@ export class ReservationEditComponent implements OnInit {
         }, 1000);
       },
       error: () => {
+        this.formSubmitted = false
         this.feedback = {type: 'error', message: 'Error saving'};
       }
     });
