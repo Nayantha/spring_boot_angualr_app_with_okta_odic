@@ -23,6 +23,7 @@ public class User {
     private String contactNumber;
     private String username;
     private String country;
+    private Role role;
 
     public User(String id, String name, String email, String username) {
         this.id = id;
