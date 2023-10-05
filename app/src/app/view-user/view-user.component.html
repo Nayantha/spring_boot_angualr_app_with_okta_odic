@@ -1,1 +1,8 @@
-<p>view-user works!</p>
+<h1>{{authUserDetails.name}}</h1>
+<img alt="profile pic" src="{{authUserDetails.picture}}">
+<p>Logged in Email: {{authUserDetails.email}}</p>
+<p *ngIf="authUser.country">Country: {{authUser.country}}</p>
+<p *ngIf="authUser.contactNumber">Contact Number: {{authUser.contactNumber}}</p>
+<a color="primary" mat-button routerLink="/reservations" style="margin-right:10px">Manage Reservations</a>
+<a [routerLink]="['/reservation/new']" color="primary" id="add" mat-raised-button style="float: right">Make A
+  Reservation</a>
