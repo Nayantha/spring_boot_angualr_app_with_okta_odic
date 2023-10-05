@@ -26,7 +26,7 @@ export class ReservationListComponent {
   }
 
   async ngOnInit() {
-    await this.notAuthorizedRedirectToHome(this.auth, this.router)
+    await this.notAuthorizedRedirectToHome();
     this.loading = true;
     this.http.get<Reservation[]>('api/reservations').subscribe((data: Reservation[]) => {
       this.reservations = data;
@@ -35,7 +35,7 @@ export class ReservationListComponent {
     });
   }
 
-  async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
+  async notAuthorizedRedirectToHome() {
     if (!await this.auth.isAuthenticated()) {
       await this.router.navigate(["home"])
     }
