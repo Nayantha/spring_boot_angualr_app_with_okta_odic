@@ -47,7 +47,7 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <mat-label>Vehicle Number</mat-label>
+    <mat-label>Vehicle Number (ex: 'NW BTJ 4753 / NW-BTJ-4753 / BTJ 4753 / BTJ-4753 / 000-1112')</mat-label>
     <input [(ngModel)]="reservation.vehicle_no" id="vehicle_no" matInput name="vehicle_no" placeholder="vehicle_no"
            [pattern]="vehicleNumberPattern" required>
   </mat-form-field>
