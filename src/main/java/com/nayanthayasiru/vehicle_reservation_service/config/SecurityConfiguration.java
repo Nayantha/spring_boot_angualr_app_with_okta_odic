@@ -1,5 +1,6 @@
 package com.nayanthayasiru.vehicle_reservation_service.config;
 
+import com.nayanthayasiru.vehicle_reservation_service.models.Role;
 import com.nayanthayasiru.vehicle_reservation_service.web.CookieCsrfFilter;
 import com.nayanthayasiru.vehicle_reservation_service.web.SpaWebFilter;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/", "/index.html", "*.ico", "*.css", "*.js", "/api/user").permitAll()
-                        .requestMatchers("/api/all_reservations").denyAll()
+                        .requestMatchers("/api/all_reservations").hasRole(Role.ADMIN.toString())
                         .requestMatchers("/api/group/*", "/api/groups").denyAll()
                         .anyRequest().authenticated())
                 .oauth2Login(withDefaults())
