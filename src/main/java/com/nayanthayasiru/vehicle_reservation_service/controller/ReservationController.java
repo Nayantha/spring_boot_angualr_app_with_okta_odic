@@ -2,6 +2,7 @@ package com.nayanthayasiru.vehicle_reservation_service.controller;
 
 import com.nayanthayasiru.vehicle_reservation_service.DTO.UserReservationDTO;
 import com.nayanthayasiru.vehicle_reservation_service.models.Reservation;
+import com.nayanthayasiru.vehicle_reservation_service.models.Role;
 import com.nayanthayasiru.vehicle_reservation_service.models.User;
 import com.nayanthayasiru.vehicle_reservation_service.repository.ReservationRepository;
 import com.nayanthayasiru.vehicle_reservation_service.repository.UserRepository;
@@ -70,7 +71,8 @@ public class ReservationController {
                 userId,
                 details.get("name").toString(),
                 details.get("email").toString(),
-                details.get("name").toString()
+                details.get("name").toString(),
+                Role.USER
         ));
         savedUser.setContactNumber(user.getContactNumber());
         savedUser.setCountry(user.getCountry());
