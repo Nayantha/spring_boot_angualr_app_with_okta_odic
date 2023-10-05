@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { User } from "../models/user";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: 'app-view-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, RouterLink],
   templateUrl: './view-user.component.html',
   styleUrls: ['./view-user.component.css']
 })
