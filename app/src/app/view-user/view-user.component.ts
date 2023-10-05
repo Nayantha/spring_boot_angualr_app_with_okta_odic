@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
 import { Router } from "@angular/router";
+import { User } from "../models/user";
 
 @Component({
   selector: 'app-view-user',
@@ -13,6 +14,7 @@ import { Router } from "@angular/router";
 })
 export class ViewUserComponent {
   authUserDetails!: any;
+  authUser!: User;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {
   }
@@ -20,6 +22,9 @@ export class ViewUserComponent {
   async ngOnInit() {
     await this.notAuthorizedRedirectToHome();
     await this.auth.getUser().subscribe(data => this.authUserDetails = data);
+    this.http.get<User>('api/get_saved_user').subscribe((data: User) => {
+      this.authUser = data;
+    });
   }
 
   async notAuthorizedRedirectToHome() {
