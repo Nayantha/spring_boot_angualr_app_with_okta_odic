@@ -19,13 +19,13 @@ export class ViewUserComponent {
   }
 
   async ngOnInit() {
-    await this.notAuthorizedRedirectToHome(this.auth, this.router);
+    await this.notAuthorizedRedirectToHome();
     this.http.get<User>('api/get_saved_user').subscribe((data: User) => {
       this.user = data;
     });
   }
 
-  async notAuthorizedRedirectToHome(auth: AuthService, router: Router) {
+  async notAuthorizedRedirectToHome() {
     if (!await this.auth.isAuthenticated()) {
       await this.router.navigate(["home"])
     }
