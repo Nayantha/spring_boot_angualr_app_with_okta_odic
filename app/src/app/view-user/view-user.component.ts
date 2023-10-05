@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
 import { Router } from "@angular/router";
-import { User } from "../models/user";
 
 @Component({
   selector: 'app-view-user',
@@ -13,7 +12,7 @@ import { User } from "../models/user";
   styleUrls: ['./view-user.component.css']
 })
 export class ViewUserComponent {
-  user!: User;
+  user!: any;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {
   }
