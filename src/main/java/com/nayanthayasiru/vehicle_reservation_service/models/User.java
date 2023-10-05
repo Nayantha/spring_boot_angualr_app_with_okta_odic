@@ -25,10 +25,12 @@ public class User {
     private String country;
     private Role role;
 
-    public User(String id, String name, String email, String username) {
+    public User(String id, String name, String email, String username, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.username = username;
+        this.role = role;
     }
+
 }
