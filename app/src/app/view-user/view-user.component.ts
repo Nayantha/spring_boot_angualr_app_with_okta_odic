@@ -20,9 +20,7 @@ export class ViewUserComponent {
 
   async ngOnInit() {
     await this.notAuthorizedRedirectToHome();
-    this.http.get<User>('api/get_saved_user').subscribe((data: User) => {
-      this.user = data;
-    });
+    await this.auth.getUser().subscribe(data => this.user = data);
   }
 
   async notAuthorizedRedirectToHome() {
