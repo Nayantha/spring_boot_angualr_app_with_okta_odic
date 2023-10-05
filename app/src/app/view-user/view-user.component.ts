@@ -12,14 +12,14 @@ import { Router } from "@angular/router";
   styleUrls: ['./view-user.component.css']
 })
 export class ViewUserComponent {
-  user!: any;
+  authUserDetails!: any;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {
   }
 
   async ngOnInit() {
     await this.notAuthorizedRedirectToHome();
-    await this.auth.getUser().subscribe(data => this.user = data);
+    await this.auth.getUser().subscribe(data => this.authUserDetails = data);
   }
 
   async notAuthorizedRedirectToHome() {
