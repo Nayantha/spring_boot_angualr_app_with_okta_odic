@@ -19,7 +19,7 @@ export class ReservationListComponent {
   title = 'Reservation List';
   loading = true;
   reservations: Reservation[] = [];
-  displayedColumns = ['id', 'name', 'email', 'date', 'time', 'vehicle_no', 'mileage', 'message', 'location', 'phone', 'actions'];
+  displayedColumns = ['date', 'time', 'vehicle_no', 'mileage', 'message', 'location', 'phone', 'actions'];
   feedback: any = {};
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {

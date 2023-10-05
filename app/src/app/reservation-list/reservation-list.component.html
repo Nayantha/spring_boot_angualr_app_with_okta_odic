@@ -16,18 +16,18 @@
 <ng-template #list>
   <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
   <table [dataSource]="reservations" mat-table>
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> ID</mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{ item.name }} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{ item.email }} </mat-cell>
-    </ng-container>
+    <!--    <ng-container matColumnDef="id">-->
+    <!--      <mat-header-cell *matHeaderCellDef> ID</mat-header-cell>-->
+    <!--      <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>-->
+    <!--    </ng-container>-->
+    <!--    <ng-container matColumnDef="name">-->
+    <!--      <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>-->
+    <!--      <mat-cell *matCellDef="let item"> {{ item.name }} </mat-cell>-->
+    <!--    </ng-container>-->
+    <!--    <ng-container matColumnDef="email">-->
+    <!--      <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>-->
+    <!--      <mat-cell *matCellDef="let item"> {{ item.email }} </mat-cell>-->
+    <!--    </ng-container>-->
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
       <mat-cell *matCellDef="let item"> {{ item.date | date}} </mat-cell>
