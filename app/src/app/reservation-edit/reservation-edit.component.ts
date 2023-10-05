@@ -30,7 +30,7 @@ import { DomSanitizer } from "@angular/platform-browser"
 export class ReservationEditComponent implements OnInit {
   phoneNumberPattern = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$"
   vehicleNumberPattern = "([A-Z]{2}(-|\\s){1}[A-Z]{3}(-|\\s){1}[0-9]{4})|([A-Z0-9]{1,3}(-|\\s){1}[0-9]{4})"
-  messageTextPattern = "^[a-zA-z0-9.,+%_\\-]{10,100}$";
+  messageTextPattern = "^[a-zA-Z0-9!@#$%^&*()\\[\\]{};'’`\\-\\\\:,.\\/<>?| ]{10,100}$";
   reservation!: Reservation;
   user!: User;
   feedback: any = {};
