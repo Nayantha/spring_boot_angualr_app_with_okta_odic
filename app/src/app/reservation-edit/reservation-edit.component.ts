@@ -1,21 +1,21 @@
-import {Component, OnInit, SecurityContext} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatIconModule} from "@angular/material/icon";
-import {MatNativeDateModule} from "@angular/material/core";
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../auth/auth.service";
-import {Reservation} from "../models/reservation";
-import {map, of, switchMap} from "rxjs";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatSelectModule} from "@angular/material/select";
-import {User} from "../models/user";
-import {DomSanitizer} from "@angular/platform-browser"
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from "@angular/material/input";
+import { FormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatIconModule } from "@angular/material/icon";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../auth/auth.service";
+import { Reservation } from "../models/reservation";
+import { map, of, switchMap } from "rxjs";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
+import { User } from "../models/user";
+import { DomSanitizer } from "@angular/platform-browser"
 
 @Component({
   selector: 'app-reservation-edit',
@@ -29,7 +29,7 @@ import {DomSanitizer} from "@angular/platform-browser"
 })
 export class ReservationEditComponent implements OnInit {
   phoneNumberPattern = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$"
-  vehicleNumberPattern = "^([a-zA-Z]{1,3}|((?!0*-)[0-9]{1,3}))-[0-9]{4}(?<!0{4})"
+  vehicleNumberPattern = "([A-Z]{2}(-|\\s){1}[A-Z]{3}(-|\\s){1}[0-9]{4})|([A-Z0-9]{1,3}(-|\\s){1}[0-9]{4})"
   messageTextPattern = "^[a-zA-z0-9.,+%_\\-]{10,100}$";
   reservation!: Reservation;
   user!: User;
